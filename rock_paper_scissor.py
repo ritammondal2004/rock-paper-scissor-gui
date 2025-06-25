@@ -72,7 +72,7 @@ welcome_label.place(x=180, y=30)
 round_label = Label(start_frame, text='Select Rounds:', font=("Arial", 18), bg='white')
 round_label.place(x=400, y=100)  
 
-
+# Function to raise a frame to the top
 def show_frame(f):
     f.tkraise()
 
