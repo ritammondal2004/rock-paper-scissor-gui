@@ -103,7 +103,7 @@ l2.image = bot_icon  # Keep a reference to the image to prevent garbage collecti
 l2.place(x=710, y=20)
 
 l3 = Label(game_frame, text='Vs', font=('Arial', 25), bg='#2eaf14', fg='white') 
-l3.place(x=470, y=230) 
+l3.place(x=470, y=230)  
 
 # load default image and flip it or transpose
 img_p = Image.open('images/default.jpg') 
@@ -222,7 +222,72 @@ def show_result_image(img):
     # Display new image at center-bottom
     canvas.create_image(480, 500, image=img, anchor='center', tags='result_img')
 
-# game
+# clear function or reset
+def clear():
+    play_sound("sounds/reset_and_menu.wav", 1.4) 
+
+    canvas.delete('result') 
+    canvas.delete('result_img')
+    
+    global score_p, score_b, current_round  # Access global scores 
+    score_p = 0  # Reset player score
+    score_b = 0  # Reset bot score
+    current_round = 0  # Reset current round
+    canvas.create_text(490,100, text=f"Score - You: {score_p} | Bot: {score_b}", font=('Arial', 17), fill='black', tags='result') 
+    
+    # Show default hands
+    canvas.itemconfig(player_img_id, state='normal')
+    canvas.itemconfig(bot_img_id, state='normal')
+
+    # Hide move hands
+    canvas.itemconfig(player_move_id, state='hidden')
+    canvas.itemconfig(bot_move_id, state='hidden')
+
+
+def end_game_popup():
+    popup = Toplevel(root)
+    popup.title("🎮 Game Over!🎮")
+    popup.geometry("400x250") 
+    popup.configure(bg="#ffe4e1")  # Light pink background
+    popup.resizable(False, False)
+
+    # CENTER THE POPUP
+    popup.update_idletasks()
+    popup_width = popup.winfo_width()
+    popup_height = popup.winfo_height()
+
+    screen_width = popup.winfo_screenwidth()
+    screen_height = popup.winfo_screenheight()
+
+    x = int((screen_width / 2) - (popup_width / 2))
+    y = int((screen_height / 2) - (popup_height / 2))
+    popup.geometry(f"400x250+{x}+{y}")
+
+    # Message with emojis
+    msg = Label(popup, text="🏆 Khel khatam bro! 🎉\nDo you want to play again?", 
+                font=("Arial", 16, "bold"), bg="#ffe4e1", fg="#2d033b", justify='center')
+    msg.pack(pady=30) 
+
+    # Button frame
+    btn_frame = Frame(popup, bg="#ffe4e1")
+    btn_frame.pack(pady=10)
+
+    # PLAY AGAIN button
+    play_btn = Button(btn_frame, text="🔁 Play Again", font=("Arial", 12, "bold"),
+                bg="#4CAF50", fg="white", width=12, command=lambda: [popup.destroy(), clear(), show_frame(start_frame), loop_sound("sounds/welcome.mp3")])
+    play_btn.grid(row=0, column=0, padx=20)
+
+    # EXIT button  
+    exit_btn = Button(btn_frame, text="❌ Exit", font=("Arial", 12, "bold"),
+                      bg="#f44336", fg="white", width=12, command=lambda: [play_clip('sounds/Quit.mp3',0,2),popup.after(2020,root.destroy)])
+    exit_btn.grid(row=0, column=1, padx=20) 
+
+    # Center popup over root window
+    popup.transient(root)
+    popup.grab_set()
+    root.wait_window(popup)  
+
+# game : actual function
 def game(player):
  
     global current_round, total_rounds, game_active, score_p, score_b  # Access global variables
@@ -310,71 +375,8 @@ def game(player):
             play_sound("sounds/draw.mp3")  
             show_result_image(draw_img)
 
-        root.after(1000, end_game_popup)  # Show popup after 2 seconds 
+        root.after(1000, end_game_popup)  # Show popup after 1 seconds 
          
-# clear function or reset
-def clear():
-    play_sound("sounds/reset_and_menu.wav", 1.4) 
-
-    canvas.delete('result') 
-    canvas.delete('result_img')
-    
-    global score_p, score_b, current_round  # Access global scores 
-    score_p = 0  # Reset player score
-    score_b = 0  # Reset bot score
-    current_round = 0  # Reset current round
-    canvas.create_text(490,100, text=f"Score - You: {score_p} | Bot: {score_b}", font=('Arial', 17), fill='black', tags='result') 
-    
-    # Show default hands
-    canvas.itemconfig(player_img_id, state='normal')
-    canvas.itemconfig(bot_img_id, state='normal')
-
-    # Hide move hands
-    canvas.itemconfig(player_move_id, state='hidden')
-    canvas.itemconfig(bot_move_id, state='hidden')
-
-def end_game_popup():
-    popup = Toplevel(root)
-    popup.title("🎮 Game Over!🎮")
-    popup.geometry("400x250") 
-    popup.configure(bg="#ffe4e1")  # Light pink background
-    popup.resizable(False, False)
-
-    # CENTER THE POPUP
-    popup.update_idletasks()
-    popup_width = popup.winfo_width()
-    popup_height = popup.winfo_height()
-
-    screen_width = popup.winfo_screenwidth()
-    screen_height = popup.winfo_screenheight()
-
-    x = int((screen_width / 2) - (popup_width / 2))
-    y = int((screen_height / 2) - (popup_height / 2))
-    popup.geometry(f"400x250+{x}+{y}")
-
-    # Message with emojis
-    msg = Label(popup, text="🏆 Khel khatam bro! 🎉\nDo you want to play again?", 
-                font=("Arial", 16, "bold"), bg="#ffe4e1", fg="#2d033b", justify='center')
-    msg.pack(pady=30) 
-
-    # Button frame
-    btn_frame = Frame(popup, bg="#ffe4e1")
-    btn_frame.pack(pady=10)
-
-    # PLAY AGAIN button
-    play_btn = Button(btn_frame, text="🔁 Play Again", font=("Arial", 12, "bold"),
-                bg="#4CAF50", fg="white", width=12, command=lambda: [popup.destroy(), clear(), show_frame(start_frame), loop_sound("sounds/welcome.mp3")])
-    play_btn.grid(row=0, column=0, padx=20)
-
-    # EXIT button  
-    exit_btn = Button(btn_frame, text="❌ Exit", font=("Arial", 12, "bold"),
-                      bg="#f44336", fg="white", width=12, command=lambda: [play_clip('sounds/Quit.mp3',0,2),popup.after(2020,root.destroy)])
-    exit_btn.grid(row=0, column=1, padx=20) 
-
-    # Center popup over root window
-    popup.transient(root)
-    popup.grab_set()
-    root.wait_window(popup)
     
 # creating buttons  
 rock_btn = Button(game_frame, text='Rock', font=('Arial', 17), command=lambda: game('r'), bg='deeppink', fg='white') 
