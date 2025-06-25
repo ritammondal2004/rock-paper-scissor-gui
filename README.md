@@ -5,8 +5,7 @@ this vault of code intern project
 
 ## 🎥 Gameplay output Demo
 
-<video src="https://github.com/user-attachments/assets/507cff3d-6824-4045-8305-90dda6b5dc1d" controls width="200" height="100">
-  Your browser does not support the video tag.
+<video src="https://github.com/user-attachments/assets/507cff3d-6824-4045-8305-90dda6b5dc1d" controls width="200"> 
 </video>
 
 <h3>📺Also get Demo Video on youtube</h3>
