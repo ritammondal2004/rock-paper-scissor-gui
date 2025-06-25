@@ -59,9 +59,7 @@ def play_clip(path, start_sec, end_sec, vol=0.9):
         time.sleep(end_sec - start_sec)
         pygame.mixer.music.stop()
     threading.Thread(target=inner, daemon=True).start()
-
-
-
+                                                              
 # start the frames in the grid 
 for frame in (start_frame, game_frame):
     frame.grid(row=0, column=0, sticky='news')  
