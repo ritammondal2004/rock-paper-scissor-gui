@@ -2,6 +2,7 @@
 this vault of code intern project
 
 
+<video src="output_demo.mp4" controls width="600"></video>
 
 
 <h3>📺 Demo Video</h3>
