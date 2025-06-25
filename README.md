@@ -11,5 +11,5 @@ this vault of code intern project
 <h3>📺Also get Demo Video on youtube</h3>
 
 <a href="https://youtu.be/h7aLM6nbdR4?si=ez2dnoBF5Usn3m4L" target="_blank">
-  <img src="images/thumb.png" alt="Watch the video" width="450"/>
+  <img src="images/thumb.png" alt="Watch the video" width="510"/>
 </a>
