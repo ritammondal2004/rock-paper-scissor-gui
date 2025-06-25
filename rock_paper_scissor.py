@@ -392,7 +392,7 @@ clear_btn = Button(game_frame, text='Reset', font=('Times', 15, 'bold'),width=8,
 clear_btn.place(x=430, y=30)   
 
 Button(game_frame, text='Back to Menu', font=('Arial', 12), bg='red', fg='white',
-        command=lambda: [play_sound("sounds/reset_and_menu.wav"), show_frame(start_frame),loop_sound("sounds/welcome.mp3")]).place(x=870, y=20) 
+        command=lambda: [play_sound("sounds/reset_and_menu.wav"), show_frame(start_frame),loop_sound("sounds/welcome.mp3")]).place(x=870, y=20)  
   
 show_frame(start_frame)  
 loop_sound("sounds/welcome.mp3")
