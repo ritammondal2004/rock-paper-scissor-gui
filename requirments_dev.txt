@@ -1,0 +1,17 @@
+# Core dependencies (also useful during development)
+Pillow==10.3.0
+pygame==2.5.2
+
+# Development tools
+jupyter         # If you plan to write or share notebooks
+ipykernel       # For running notebooks
+black           # Code formatter
+flake8          # Linter to check Python code style
+isort           # Automatically sort imports
+pytest          # For writing and running tests (optional)
+   
+# Optional GUI testing tools (not needed unless advanced testing)
+pyautogui       # GUI automation (only if needed for interaction testing)
+
+# Environment management (optional)  
+python-dotenv   # Manage environment variables via .env file
