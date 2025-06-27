@@ -4,7 +4,7 @@ from tkinter import Tk, Canvas, Label, Button, Frame, Toplevel
 from PIL import ImageTk, Image 
 import random, pygame, time
 from functools import partial  
-import threading 
+import threading
 
 # main window object
 root = Tk() 
