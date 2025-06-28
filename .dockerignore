@@ -1,0 +1,10 @@
+.git
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+Notebook/
+*.ipynb
+*.pdf
+*.mp4
+README

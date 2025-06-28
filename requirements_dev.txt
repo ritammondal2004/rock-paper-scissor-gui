@@ -1,0 +1,21 @@
+# === Core dependencies ===
+Pillow==10.3.0
+pygame==2.5.2
+
+# === Development tools ===
+# For working with Jupyter notebooks
+jupyter
+ipykernel
+
+# For code quality
+black
+flake8
+isort
+pytest
+
+# === Optional GUI testing ===
+# For GUI automation/testing (optional)
+pyautogui
+
+# === Optional environment management ===
+python-dotenv
