@@ -1,5 +1,5 @@
-##  this is rock paper scissor **project**
-this vault of code intern project
+# Rock paper scissor **project**
+I built this project during **vault of code python developer intern** as final project 
 
 ## 👤 Author  
 **Ritam Mondal**  
@@ -37,27 +37,47 @@ A visually engaging and interactive Rock-Paper-Scissors game built using **Pytho
 ## 📁 Folder Structure
 
 rock_paper_scissor_project/
+
 │
+
 ├── images/ # All image assets used in the UI
+
 │ ├── start_img.png
+
 │ ├── rock.png
+          
 │ ├── paper.png
+               
 │ └── scissor.png
+
 │
+
 ├── sounds/ # Sound effects used in the game
+
 │ ├── click.mp3
+
 │ ├── win.mp3
+
 │ └── lose.mp3
+
 │
-├── Notebook/ # (Optional) Jupyter notebooks used during development
+
+├── Notebook/ # (Optional) Jupyter notebooks used during development (for explanation)
+
 │ └── development_notes.ipynb
 │
+
 ├── dist/ # Output folder for the final .exe build (created by PyInstaller)
+
 │ └── RockPaperScissor.exe
 │
+
 ├── rock_paper_scissor.py # Main Python script
+
 ├── requirements.txt # All dependencies
+
 ├── README.md # You're reading it!
+
 └── .gitignore # Files/folders to ignore in git
 
 
@@ -72,6 +92,13 @@ rock_paper_scissor_project/
 - Display of scores
 - Win/Loss feedback via visuals and audio
 
+---
+## Distribute
+You can now send this `.exe` file to anyone!
+
+📝 Download the [game_app.exe](game_app/rock_paper_scissor.exe) from here or from my [google drive](https://drive.google.com/file/d/13Q_PfoEbi8w4zo0vZ8KUyQ8lD3nb81p2/view?usp=sharing) : 
+
+**Users don’t need Python installed to run the app.**
 ---
 
 ## 🖥️ How to Run (Locally) and build your own **poratble app**
@@ -124,11 +151,6 @@ dist/RockPaperScissor.exe
 ```
 ---
 
-## Distribute
-You can now send this `.exe` file to anyone!
-📝 Download here: [dist\rock_paper_scissor.exe]  
-
-**Users don’t need Python installed to run the app.**
 
 ## Notes on Packaging
 If Docker was used:
