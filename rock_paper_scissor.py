@@ -1,10 +1,26 @@
 # Rock Paper Scissor Game using Tkinter and Pygame for sound effects             
-                        
+# run this project inside the directory where this .py is located
+# on terminal go to "cd this folder path" then run "python file_name.py" 
+
+
 from tkinter import Tk, Canvas, Label, Button, Frame, Toplevel
 from PIL import ImageTk, Image 
 import random, pygame, time
 from functools import partial  
 import threading
+
+import os
+import sys
+
+# this is for run the app into the .exe
+def resource_path(relative_path):
+    """ Get absolute path to resource (for PyInstaller bundling) """
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
 
 # main window object
 root = Tk() 
@@ -20,7 +36,8 @@ root.configure(bg="white")
 start_frame = Frame(root, width=1000, height=680)
 start_frame.grid(row=0, column=0, sticky="news")
 
-bg_img = Image.open("images/start_img.png").resize((1000, 680))
+#bg_img = Image.open("images/start_img.png").resize((1000, 680)) 
+bg_img = Image.open(resource_path("images/start_img.png")).resize((1000, 680)) 
 bg_photo = ImageTk.PhotoImage(bg_img)
 bg_label = Label(start_frame, image=bg_photo)
 bg_label.image = bg_photo
@@ -28,7 +45,7 @@ bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 
 game_frame = Frame(root, width=1000, height=680, bg='white')
-
+ 
 canvas = Canvas(game_frame, width=1000, height=680, bg='white')
 canvas.grid(row=0, column=0)
 canvas.configure(bg="white") 
@@ -37,7 +54,8 @@ canvas.configure(bg="white")
 pygame.mixer.init()  
 def play_sound(path, vol = 1):
     def inner():
-        pygame.mixer.music.load(path) 
+#        pygame.mixer.music.load(path) 
+        pygame.mixer.music.load(resource_path(path))
         pygame.mixer.music.set_volume(vol)  # Volume 0.0 to 1.0
         pygame.mixer.music.play()  #(loops: int = 0, start: float = 0, fade_ms: int = 0) -> None
     threading.Thread(target=inner, daemon=True).start()
@@ -45,7 +63,7 @@ def play_sound(path, vol = 1):
 
 def loop_sound(path, loop_count=-1,vol=0.5):
     def inner():
-        pygame.mixer.music.load(path)
+        pygame.mixer.music.load(resource_path(path))
         pygame.mixer.music.set_volume(vol)
         pygame.mixer.music.play(loop_count)
     threading.Thread(target=inner, daemon=True).start() 
@@ -53,7 +71,7 @@ def loop_sound(path, loop_count=-1,vol=0.5):
 
 def play_clip(path, start_sec, end_sec, vol=0.9):
     def inner():
-        pygame.mixer.music.load(path) 
+        pygame.mixer.music.load(resource_path(path)) 
         pygame.mixer.music.play(start=start_sec) 
         pygame.mixer.music.set_volume(vol)  
         time.sleep(end_sec - start_sec)
@@ -95,10 +113,11 @@ for i in range(1, 11):
 l1 = Label(game_frame, text='Player(You)', font=('Arial', 20), bg='#612685', fg='white')  
 l1.place(x=80, y=30) 
 
-bot_icon = Image.open("images/bot_icon.jpg").resize((100, 80))
+
+bot_icon = Image.open(resource_path("images/bot_icon.jpg")).resize((100, 80))
 bot_icon = ImageTk.PhotoImage(bot_icon)
 # Place bot image
-l2 = Label(game_frame, image=bot_icon, bg='white')
+l2 = Label(game_frame, image=bot_icon, bg='white')  
 l2.image = bot_icon  # Keep a reference to the image to prevent garbage collection 
 l2.place(x=710, y=20)
 
@@ -106,7 +125,7 @@ l3 = Label(game_frame, text='Vs', font=('Arial', 25), bg='#2eaf14', fg='white')
 l3.place(x=470, y=230)  
 
 # load default image and flip it or transpose
-img_p = Image.open('images/default.jpg') 
+img_p = Image.open(resource_path('images/default.jpg')) 
 img_p = img_p.resize((300, 300))  
 
 img_b = img_p.transpose(Image.FLIP_LEFT_RIGHT)
@@ -116,14 +135,14 @@ img_p = ImageTk.PhotoImage(img_p)
 img_b = ImageTk.PhotoImage(img_b)  
 
 ## ----------------rocks-----------------------
-Rock_p = Image.open('images/rock.jpg').resize((300, 300))  # Load rock image
+Rock_p = Image.open(resource_path('images/rock.jpg')).resize((300, 300))  # Load rock image
 Rock_b = Rock_p.transpose(Image.FLIP_LEFT_RIGHT)  # Flip for bot image 
 # put on canvas
 Rock_p = ImageTk.PhotoImage(Rock_p)
 Rock_b = ImageTk.PhotoImage(Rock_b)
 
 # load rock angry image
-RockAngry_p = Image.open('images/RockAngry.webp') 
+RockAngry_p = Image.open(resource_path('images/RockAngry.webp')) 
 RockAngry_p = RockAngry_p.resize((300, 300)) 
 RockAngry_b = RockAngry_p.transpose(Image.FLIP_LEFT_RIGHT) # for bot
 #put on canvas
@@ -131,57 +150,57 @@ RockAngry_p = ImageTk.PhotoImage(RockAngry_p)
 RockAngry_b = ImageTk.PhotoImage(RockAngry_b) 
 
 # Load rock fear image
-RockFear_p = Image.open('images/RockFear.png').resize((300, 300)) 
+RockFear_p = Image.open(resource_path('images/RockFear.png')).resize((300, 300)) 
 RockFear_b = RockFear_p.transpose(Image.FLIP_LEFT_RIGHT)  # for bot rock hand
 # put on canvas
-RockFear_p = ImageTk.PhotoImage(RockFear_p)
+RockFear_p = ImageTk.PhotoImage(RockFear_p) 
 RockFear_b = ImageTk.PhotoImage(RockFear_b) 
 
 ## -----------------papers---------------------
 
-Paper_p = Image.open('images/Paper.jpg').resize((300, 300))  # Load paper image 
+Paper_p = Image.open(resource_path('images/Paper.jpg')).resize((300, 300))  # Load paper image 
 Paper_b = Paper_p.transpose(Image.FLIP_LEFT_RIGHT)  # Flip for bot image
 # put on canvas
 Paper_p = ImageTk.PhotoImage(Paper_p)
 Paper_b = ImageTk.PhotoImage(Paper_b) 
 
 # load paper angry image
-PaperAngry_p = Image.open('images/PaperAngry.jpg').resize((300, 300))  
+PaperAngry_p = Image.open(resource_path('images/PaperAngry.jpg')).resize((300, 300))  
 PaperAngry_b = PaperAngry_p.transpose(Image.FLIP_LEFT_RIGHT)  # for bot rock hand
 # put on canvas
 PaperAngry_p = ImageTk.PhotoImage(PaperAngry_p)
 PaperAngry_b = ImageTk.PhotoImage(PaperAngry_b)    
 
 # load paper fear image 
-PaperFear_p = Image.open('images/PaperFear.jpg').resize((300, 300))  
+PaperFear_p = Image.open(resource_path('images/PaperFear.jpg')).resize((300, 300))  
 PaperFear_b = PaperFear_p.transpose(Image.FLIP_LEFT_RIGHT)  # for bot paper hand 
 # put on canvas
 PaperFear_p = ImageTk.PhotoImage(PaperFear_p)
-PaperFear_b = ImageTk.PhotoImage(PaperFear_b)
+PaperFear_b = ImageTk.PhotoImage(PaperFear_b) 
 
 # -----------------scissors---------------------
-Scissor_p = Image.open('images/Scissor.webp').resize((300, 300))  # Load scissor image
+Scissor_p = Image.open(resource_path('images/Scissor.webp')).resize((300, 300))  # Load scissor image
 Scissor_b = Scissor_p.transpose(Image.FLIP_LEFT_RIGHT)  # Flip for bot image 
 # put on canvas 
 Scissor_p = ImageTk.PhotoImage(Scissor_p)
 Scissor_b = ImageTk.PhotoImage(Scissor_b) 
 
 # load scissor Angry image
-ScissorAngry_p = Image.open('images/ScissorAngry.webp').resize((300, 300)) 
+ScissorAngry_p = Image.open(resource_path('images/ScissorAngry.webp')).resize((300, 300)) 
 ScissorAngry_b = ScissorAngry_p.transpose(Image.FLIP_LEFT_RIGHT)  # for bot scissor hand 
 # put on canvas 
 ScissorAngry_p = ImageTk.PhotoImage(ScissorAngry_p)
 ScissorAngry_b = ImageTk.PhotoImage(ScissorAngry_b) 
 
 # load scissor fear image
-ScissorFear_p = Image.open('images/ScissorFear.png').resize((300, 300)) 
+ScissorFear_p = Image.open(resource_path('images/ScissorFear.png')).resize((300, 300)) 
 ScissorFear_b = ScissorFear_p.transpose(Image.FLIP_LEFT_RIGHT)  # for bot scissor hand
 # put on canvas
 ScissorFear_p = ImageTk.PhotoImage(ScissorFear_p)
 ScissorFear_b = ImageTk.PhotoImage(ScissorFear_b)
 
 # selection img 
-img_s = Image.open('images/selection.jpg').resize((300,110)) 
+img_s = Image.open(resource_path('images/selection.jpg')).resize((300,110)) 
 img_s = ImageTk.PhotoImage(img_s) 
 
 # Put image on canvas on specific coordinate
@@ -189,13 +208,13 @@ canvas.create_image(0,470, anchor='nw', image=img_s)
 canvas.create_image(620,470, anchor='nw', image=img_s)  
 
 # Result images
-win_img = Image.open('images/YouWin.jpg').resize((200, 200))
+win_img = Image.open(resource_path('images/YouWin.jpg')).resize((200, 200))
 win_img = ImageTk.PhotoImage(win_img)
 
-lose_img = Image.open('images/YouLose.jpg').resize((200, 200))
+lose_img = Image.open(resource_path('images/YouLose.jpg')).resize((200, 200))
 lose_img = ImageTk.PhotoImage(lose_img)
 
-draw_img = Image.open('images/YouTie.jpg').resize((200, 200))
+draw_img = Image.open(resource_path('images/YouTie.jpg')).resize((200, 200))
 draw_img = ImageTk.PhotoImage(draw_img)
 
 
