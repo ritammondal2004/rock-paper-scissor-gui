@@ -6,5 +6,5 @@ __pycache__/
 Notebook/
 *.ipynb
 *.pdf
-*.mp4
+*.mp4 
 README
