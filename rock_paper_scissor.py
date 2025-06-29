@@ -1,6 +1,6 @@
 # Rock Paper Scissor Game using Tkinter and Pygame for sound effects             
 # run this project inside the directory where this .py is located
-# on terminal go to "cd this folder path" then run "python file_name.py" 
+# on terminal go to "cd this folder path" then run "python file_name.py" git 
 
 
 from tkinter import Tk, Canvas, Label, Button, Frame, Toplevel
