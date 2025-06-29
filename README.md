@@ -131,7 +131,7 @@ You can create a portable `.exe` version for Windows using `pyinstaller`.
 ```
 pip install pyinstaller
 ```  
-### 2. Navigate toyour project folder and Run PyInstaller to Create .exe
+### 2. Navigate to your project folder and Run PyInstaller to Create .exe
 Run this command on command prompt
 
 ```
