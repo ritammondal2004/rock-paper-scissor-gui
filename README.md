@@ -36,50 +36,31 @@ A visually engaging and interactive Rock-Paper-Scissors game built using **Pytho
 
 ## 📁 Folder Structure
 
+```
 rock_paper_scissor_project/
-
 │
-
 ├── images/ # All image assets used in the UI
-
 │ ├── start_img.png
-
 │ ├── rock.png
-          
-│ ├── paper.png
-               
+│ ├── paper.png 
 │ └── scissor.png
-
 │
-
 ├── sounds/ # Sound effects used in the game
-
 │ ├── click.mp3
-
 │ ├── win.mp3
-
 │ └── lose.mp3
-
 │
-
 ├── Notebook/ # (Optional) Jupyter notebooks used during development (for explanation)
-
 │ └── development_notes.ipynb
 │
-
 ├── dist/ # Output folder for the final .exe build (created by PyInstaller)
-
 │ └── RockPaperScissor.exe
 │
-
 ├── rock_paper_scissor.py # Main Python script
-
 ├── requirements.txt # All dependencies
-
 ├── README.md # You're reading it!
-
 └── .gitignore # Files/folders to ignore in git
-
+```
 
 ---
 
